@@ -1,0 +1,58 @@
+{% comment %} <h1>{{section.settings.title}}</h1>
+<p>{{section.settings.subtext}}</p> {% endcomment %}
+
+<div class="max-w-md">
+    <div class="text-5xl font-bold my-4">
+        {{section.settings.title}}
+
+    </div>
+    <div class="my-4">
+        <p class="">{{section.settings.subtext}}</p>
+    </div>
+    <div class="my-4">
+        {%  if section.settings.button_url == blank%}
+            {%  assign shop_url = shop.secure_url  %}
+        {%else%}
+            {% assign shop_url = section.settings.button_url %}
+
+        {% endif %}
+        <a href={{ shop_url }} class="bg-green-800 py-2 px-2 border-1 text-white">{{section.settings.button-label}}</a>
+    </div>
+
+</div>
+
+
+
+{%  schema  %} 
+    {
+        "name" : "template-404",
+        "tag" : "section",
+        "class" : "flex items-center justify-center py-5 h-screen ",
+        "settings" : [{
+            "type" : "text",
+            "id" : "title",
+            "label": "404 heading title",
+            "default": "404"
+
+        },
+        {
+            "type" : "text",
+            "id" : "subtext",
+            "label": "404 subtext",
+            "default" : "OOPS ! page not found"
+        },
+        {
+            "type": "text",
+            "id": "button-label",
+            "default" : "Back to homepage",
+            "label" : "Button label"
+        },
+        {
+            "type": "url",
+            "id" : "button_url",
+            "label" : "Button URL"
+        }
+    ]
+        
+    }
+{% endschema %}
